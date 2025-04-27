@@ -323,8 +323,7 @@ void FrogPilotLateralPanel::updateToggles() {
 
     bool forcingAutoTune = !hasAutoTune && params.getBool("ForceAutoTune");
     bool forcingAutoTuneOff = hasAutoTune && params.getBool("ForceAutoTuneOff");
-    bool usingNNFF = hasNNFFLog && params.getBool("LateralTune") && params.getBool("NNFF");
-
+  
     bool setVisible = tuningLevel >= frogpilotToggleLevels[key].toDouble();
 
     if (key == "AlwaysOnLateralLKAS") {
@@ -355,14 +354,13 @@ void FrogPilotLateralPanel::updateToggles() {
     }
 
     if (key == "NNFFLite") {
-      setVisible &= !usingNNFF;
+      setVisible &= true;
     }
 
     if (key == "SteerFriction") {
       setVisible &= params.getFloat("SteerFrictionStock") != 0;
       setVisible &= hasAutoTune ? forcingAutoTuneOff : !forcingAutoTune;
       setVisible &= isTorqueCar;
-      setVisible &= !usingNNFF;
     }
 
     if (key == "SteerKP") {
@@ -375,7 +373,6 @@ void FrogPilotLateralPanel::updateToggles() {
       setVisible &= params.getFloat("SteerLatAccelStock") != 0;
       setVisible &= hasAutoTune ? forcingAutoTuneOff : !forcingAutoTune;
       setVisible &= isTorqueCar;
-      setVisible &= !usingNNFF;
     }
 
     if (key == "SteerRatio") {
