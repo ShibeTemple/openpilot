@@ -360,7 +360,7 @@ frogpilot_default_params: list[tuple[str, str | bytes, int]] = [
   ("UnlimitedLength", "1", 2),
   ("UnlockDoors", "1", 0),
   ("UpdaterAvailableBranches", "", 0),
-  ("UseKonikServer", "0", 2),
+  ("UseKonikServer", "1", 2),
   ("UseSI", "1", 3),
   ("UseVienna", "0", 1),
   ("VeryLongDistanceButtonControl", "6", 2),

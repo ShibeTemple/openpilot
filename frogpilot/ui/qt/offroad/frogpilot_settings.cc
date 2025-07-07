@@ -140,10 +140,6 @@ FrogPilotSettingsWindow::FrogPilotSettingsWindow(SettingsWindow *parent) : QFram
                                           "../../frogpilot/assets/toggle_icons/icon_customization.png",
                                           togglePresets, true);
 
-  int timeTo100FPHours = 100 - (params_tracking.getInt("FrogPilotMinutes") / 60);
-  int timeTo250OPHours = 250 - (params.getInt("KonikMinutes") / 60) - (params.getInt("openpilotMinutes") / 60);
-  togglePreset->setEnabledButtons(3, timeTo100FPHours <= 0 || timeTo250OPHours <= 0);
-
   QObject::connect(togglePreset, &FrogPilotButtonsControl::buttonClicked, [this](int id) {
     tuningLevel = id;
 
@@ -156,11 +152,6 @@ FrogPilotSettingsWindow::FrogPilotSettingsWindow(SettingsWindow *parent) : QFram
     }
   });
 
-  QObject::connect(togglePreset, &FrogPilotButtonsControl::disabledButtonClicked, [this](int id) {
-    if (id == 3) {
-      ConfirmationDialog::alert(tr("The <b>Developer</b> preset is only available for users with either over 100 hours on FrogPilot, or 250 hours with openpilot."), this);
-    }
-  });
   togglePreset->setCheckedButton(params.getInt("TuningLevel"));
   list->addItem(togglePreset, true);
 
